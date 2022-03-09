@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ErrorBanner from "../../components/ErrorBanner";
 import Products from "./Products";
+import Options from "./Options";
 
 function Type({ orderType }) {
     const [item, setItems] = useState([]);
@@ -24,13 +25,18 @@ function Type({ orderType }) {
         return <ErrorBanner message="에러가 발생했습니다." />;
     }
 
-    const ItemComponents = orderType === "products" ? Products : null;
+    const ItemComponents = orderType === "products" ? Products : Options;
 
-    const optionItems = item.map((item) => {
-        return <ItemComponents key={item.name} name={item.name} path={item.imagePath} />;
-    });
+    const optionItems = item.map((item) => <ItemComponents key={item.name} name={item.name} path={item.imagePath} />);
 
-    return <div>{optionItems}</div>;
+    return (
+        <>
+            <h2>주문 종류</h2>
+            <p>하나의 가격</p>
+            <p>총 가격 : </p>
+            <div style={{ display: "flex", flexDirection: orderType === "options" && "column" }}>{optionItems}</div>
+        </>
+    );
 }
 
 export default Type;
