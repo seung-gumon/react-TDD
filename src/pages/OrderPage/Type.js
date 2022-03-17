@@ -14,7 +14,7 @@ function Type({ orderType }) {
 
     const loadItems = async (orderType) => {
         try {
-            const response = await axios.get(`http://localhost:5000/${orderType}`);
+            const response = await axios.get(`http://localhost:5001/${orderType}`);
             setItems(response.data);
         } catch (error) {
             setError(true);
