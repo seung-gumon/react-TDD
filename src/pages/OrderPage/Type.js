@@ -1,12 +1,15 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ErrorBanner from "../../components/ErrorBanner";
 import Products from "./Products";
 import Options from "./Options";
+import OrderContex from "../../contexst/OrderContext";
 
 function Type({ orderType }) {
     const [item, setItems] = useState([]);
     const [error, setError] = useState(false);
+
+    const [orderDataes, updateItemCount] = useContext(OrderContex);
 
     useEffect(() => {
         loadItems(orderType);
@@ -27,13 +30,20 @@ function Type({ orderType }) {
 
     const ItemComponents = orderType === "products" ? Products : Options;
 
-    const optionItems = item.map((item) => <ItemComponents key={item.name} name={item.name} path={item.imagePath} />);
+    const optionItems = item.map((item) => (
+        <ItemComponents
+            key={item.name}
+            name={item.name}
+            path={item.imagePath}
+            updateItemCount={(itenName, newItemCount) => updateItemCount(itenName, newItemCount, orderType)}
+        />
+    ));
 
     return (
         <>
             <h2>주문 종류</h2>
             <p>하나의 가격</p>
-            <p>총 가격 : </p>
+            <p>총 가격 : {orderDataes.totals[orderType]}</p>
             <div style={{ display: "flex", flexDirection: orderType === "options" && "column" }}>{optionItems}</div>
         </>
     );
