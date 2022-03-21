@@ -34,7 +34,7 @@ export function OrderContextProvider(props) {
         const total = productsTotal + optionsTotal;
         setTotals({
             products: productsTotal,
-            optionsTotal: optionsTotal,
+            options: optionsTotal,
             total,
         });
     }, [orderCounts]);

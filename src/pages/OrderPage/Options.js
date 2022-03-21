@@ -1,16 +1,16 @@
 import React from "react";
 
-function Options({ name, updateItemCounts }) {
+function Options({ name, updateItemCount }) {
     return (
         <form>
             <input
                 type="checkbox"
-                id={`${name} option`}
+                id={name}
                 onChange={(e) => {
-                    updateItemCounts(name, e.currentTarget.checked ? 1 : 0);
+                    updateItemCount(name, e.currentTarget.checked ? 1 : 0);
                 }}
             />
-            &nbsp; <label htmlFor={`${name}`}>{name}</label>
+            &nbsp; <label htmlFor={name}>{name}</label>
         </form>
     );
 }
