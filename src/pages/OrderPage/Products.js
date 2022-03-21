@@ -2,9 +2,7 @@ import React from "react";
 
 function Products({ name, path, updateItemCount }) {
     const handleChange = (event) => {
-        const {
-            currentValue: { value },
-        } = event;
+        const value = event.currentTarget.value;
         updateItemCount(name, value);
     };
 
@@ -12,8 +10,10 @@ function Products({ name, path, updateItemCount }) {
         <div style={{ textAlign: "center" }}>
             <img src={`http://localhost:5001/${path}`} alt={`${name} product`} style={{ width: "75%" }} />
             <form style={{ marginTop: "10px" }}>
-                <label style={{ textAlign: "right" }}>{name}</label>
-                <input style={{ marginLeft: 7 }} type="number" name="quantity" min={"0"} defaultValue={0} onChange={handleChange} />
+                <label htmlFor={name} style={{ textAlign: "right" }}>
+                    {name}
+                </label>
+                <input id={name} style={{ marginLeft: 7 }} type="number" name="quantity" min={"0"} defaultValue={0} onChange={handleChange} />
             </form>
         </div>
     );

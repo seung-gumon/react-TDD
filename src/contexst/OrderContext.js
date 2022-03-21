@@ -1,6 +1,6 @@
 import { createContext, useEffect, useMemo, useState } from "react";
 
-const OrderContext = createContext();
+export const OrderContext = createContext();
 
 const priceItem = {
     products: 1000,

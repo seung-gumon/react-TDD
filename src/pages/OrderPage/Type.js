@@ -3,13 +3,13 @@ import React, { useContext, useEffect, useState } from "react";
 import ErrorBanner from "../../components/ErrorBanner";
 import Products from "./Products";
 import Options from "./Options";
-import OrderContex from "../../contexst/OrderContext";
+import { OrderContext } from "../../contexst/OrderContext";
 
 function Type({ orderType }) {
     const [item, setItems] = useState([]);
     const [error, setError] = useState(false);
 
-    const [orderDataes, updateItemCount] = useContext(OrderContex);
+    const [orderDataes, updateItemCount] = useContext(OrderContext);
 
     useEffect(() => {
         loadItems(orderType);
