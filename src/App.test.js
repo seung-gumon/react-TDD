@@ -39,7 +39,7 @@ test("From order to order completation", async () => {
     expect(summaryPage).toBeInTheDocument();
 
     const productsHeading = screen.getByRole("heading", {
-        name: "여행 상품: 5000",
+        name: "여행 상품 : 5000",
     });
     expect(productsHeading).toBeInTheDocument();
 
@@ -48,7 +48,7 @@ test("From order to order completation", async () => {
     expect(screen.getByText("Insurance")).toBeInTheDocument();
 
     const confirmCheckBox = screen.getByRole("checkbox", {
-        name: "주문하려는 것을 확인하셨나요?",
+        name: "주문하려는 것을 확인하셨나요 ?",
     });
     userEvent.click(confirmCheckBox);
 

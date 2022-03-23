@@ -1,6 +1,6 @@
 import React from "react";
 
-function ErrorBanner({ message = "에러입니다" }) {
+function ErrorBanner({ message }) {
     return (
         <div data-testid="error-banner" style={{ backgroundColor: "red", color: "white" }}>
             {message}
