@@ -1,6 +1,8 @@
-import { render, screen, not } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "./App";
+import { server } from "./mocks/server";
+import { rest } from "msw";
 
 test("From order to order completation", async () => {
     render(<App />);
@@ -32,7 +34,6 @@ test("From order to order completation", async () => {
     userEvent.click(orderButton);
 
     // 주문확인 페이지
-
     const summaryPage = screen.getByRole("heading", {
         name: "주문 확인",
     });
@@ -73,4 +74,14 @@ test("From order to order completation", async () => {
         name: "첫페이지로",
     });
     userEvent.click(firstPageButton);
+
+    const productsTotal = screen.getByText("상품 총 가격 : 0");
+    expect(productsTotal).toBeInTheDocument();
+
+    const optionsTotal = screen.getByText("옵션 총 가격 : 0");
+    expect(optionsTotal).toBeInTheDocument();
+
+    await waitFor(() => {
+        screen.getByRole("spinbutton", { name: "America" });
+    });
 });
